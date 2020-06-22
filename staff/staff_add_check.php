@@ -22,7 +22,7 @@
     }
     else
     {
-        print 'スタッフ名';
+        print 'スタッフ名:';
         print $staff_name;
         print '<br />';
     }
@@ -36,7 +36,7 @@
         print 'パスワードが一致しません。<br />';
     }
     
-    if($staff_name=='' or $staff_pass=='' or $staff_pass!=$staff_pass2)
+    if($staff_name=='' || $staff_pass=='' || $staff_pass!=$staff_pass2)
     {
         print '<form>';
         print '<input type="button" onclick="history.back()" value="戻る">';
