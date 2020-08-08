@@ -13,6 +13,7 @@
             require_once('../common/common.php');
 
             $post = sanitize($_POST);
+            $staff_code = $post['code'];
             $staff_name = $post['name'];
             $staff_pass = $post['pass'];
 
@@ -22,16 +23,15 @@
             $dbh = new PDO($dsn, $user, $password);
             $dbh ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = 'INSERT INTO mst_staff(name, password) VALUES (?, ?)';
+            $sql = 'UPDATE mst_staff SET name=?, password=? WHERE code=?';
             $stmt = $dbh ->prepare($sql);
             $data[] = $staff_name;
             $data[] = $staff_pass;
+            $data[] = $staff_code;
             $stmt ->execute($data);
 
             $dbh = null;
 
-            print $staff_name;
-            print 'さんを追加しました。<br />';
         }
         catch (Exception $e)
         {
@@ -41,6 +41,8 @@
 
         ?>
 
+        修正しました。<br />
+        <br />
         <a href="staff_list.php">戻る</a>
 
     </body>
