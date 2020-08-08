@@ -1,16 +1,18 @@
 <?php
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
+if(isset($_SESSION['member_login'])==false)
 {
-    print 'ログインされていません。<br />';
-    print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
-    exit();
+    print 'ようこそゲスト様　';
+    print '<a href="member_login.html">会員ログイン</a><br />';
+    print '<br />';
 }
 else
 {
-    print $_SESSION['staff_name'];
-    print 'さんログイン中<br />';
+    print 'ようこそ';
+    print $_SESSION['member_name'];
+    print '様';
+    print '<a href=""member_logout.php>ログアウト</a><br />';
     print '<br />';
 }
 ?>
@@ -42,7 +44,6 @@ else
 
             print '商品一覧<br /><br />';
 
-            print '<form method="post" action="pro_branch.php">';
             while(true)
             {
                 $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,17 +51,15 @@ else
                 {
                     break;
                 }
-                print'<input type="radio" name="procode" value="'.$rec['code'].'">';
+                print'<a href="shop_product.php?procode='.$rec['code'].'">';
                 print $rec['name'].'---';
                 print $rec['price'].'円';
+                print '</a>';
                 print '<br />';
             }
-            print'<input type="submit" name="disp" value="参照">';
-            print'<input type="submit" name="add" value="追加">';
-            print'<input type="submit" name="edit" value="修正">';
-            print'<input type="submit" name="delete" value="削除">';
-            print '</form>';
 
+        print '<br />';
+        print '<a href="shop_cartlook.php">カートを見る</a><br />';
         }
         catch(Exception $e)
         {
@@ -69,9 +68,6 @@ else
         }
 
         ?>
-	<br />
-	<a href="../staff_login/staff_top.php">トップメニューへ</a><br />
-
 
     </body>
 </html>

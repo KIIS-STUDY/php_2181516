@@ -1,16 +1,18 @@
 <?php
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
+if(isset($_SESSION['member_login'])==false)
 {
-    print 'ログインされていません。<br />';
-    print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
-    exit();
+    print 'ようこそゲスト様　';
+    print '<a href="member_login.html">会員ログイン</a><br />';
+    print '<br />';
 }
 else
 {
-    print $_SESSION['staff_name'];
-    print 'さんログイン中<br />';
+    print 'ようこそ';
+    print $_SESSION['member_name'];
+    print '様';
+    print '<a href=""member_logout.php>ログアウト</a><br />';
     print '<br />';
 }
 ?>
@@ -54,8 +56,9 @@ else
             }
             else
             {
-                $disp_gazou='<img src="./gazou/'.$pro_gazou_name.'">';
+                $disp_gazou='<img src="../product/gazou/'.$pro_gazou_name.'">';
             }
+            print '<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
 
         }
         catch(Exception $e)
@@ -66,7 +69,7 @@ else
 
         ?>
 
-        商品情報参照<br />
+        商品情報<br />
         <br />
         商品コード<br />
         <?php print $pro_code;?>
