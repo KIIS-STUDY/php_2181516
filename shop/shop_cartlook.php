@@ -30,7 +30,7 @@ else
         try
         {
 
-            if(Isset($_SESSION['cart'])==true)
+            if(isset($_SESSION['cart'])==true)
             {
                 $cart = $_SESSION['cart'];
                 $kazu = $_SESSION['kazu'];
